@@ -30,3 +30,18 @@ while IFS= read -r -d '' file; do
   fi
 
 done < <(find "$TARGET" -type f -name "*.html" -print0)
+
+while IFS= read -r -d '' file; do
+  css_count=$(( css_count + 1 ))
+done < <(find "$TARGET" -type f -name "*.css" -print0)
+
+while IFS= read -r -d '' file; do
+  js_count=$(( js_count + 1 ))
+done < <(find "$TARGET" -type f -name "*.js" -print0)
+
+log "──────────────────────────────────"
+log "Summary:"
+log "  .html files : $html_count"
+log "  .css  files : $css_count"
+log "  .js   files : $js_count"
+log "──────────────────────────────────"
